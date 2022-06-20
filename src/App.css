@@ -1,3 +1,17 @@
 .App {
   text-align: center;
 }
+
+:root {
+  --cell-border-color: #E4DAEE;
+  --cell-bg-color: #FFFFFF;
+  --text-color: #520A6F;
+  --main-font: 'Roboto', sans-serif;
+  --cursive-font: 'Kaushan Script', cursive;
+}
+
+h1 {
+  color: var(--text-color);
+  font-family: var(--cursive-font);
+  font-size: 50px;
+}

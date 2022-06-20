@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.css'
 import './App.css';
 import Weekday from './components/Weekday';
 
@@ -15,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>June 2022</h1>
+      <h1 className='bg-info'>June 2022</h1>
       <div>
         {weekdays.map((weekday, index) => {
           return <Weekday day={weekday} key={index} />
