@@ -1,0 +1,9 @@
+#quote-wrapper {
+  width: 80%;
+  font-family: var(--cursive-font);
+  font-size: 18px;
+  text-align: right;
+  margin: 10px auto 10px auto;
+  color: var(--text-color);
+  border-radius: 5px;
+}

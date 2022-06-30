@@ -1,0 +1,68 @@
+:root {
+  --cell-border-color: #E4DAEE;
+  --cell-bg-color: #FFFFFF;
+  --text-color: #520A6F;
+  --main-font: 'Roboto', sans-serif;
+  --cursive-font: 'Kaushan Script', cursive;
+}
+
+#title-wrapper {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  flex: 1;
+  font-family: var(--cursive-font);
+  font-size: 50px;
+  color: var(--text-color);
+  padding: 5px;
+  text-align: center;
+}
+
+.button {
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  text-decoration: none;
+  font-family: var(--main-font);
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--cell-border-color);
+  color: var(--text-color);
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--text-color);
+  cursor: pointer;
+}
+
+.cell {
+  background-color: var(--cell-bg-color);
+  color: var(--text-color);
+  border: 2px solid var(--cell-border-color);
+  border-radius: 5px;
+  font-family: var(--main-font);
+  font-size: 20px;
+  vertical-align: top;
+  text-align: left;
+  padding: 20px;
+  margin: 1px;
+  transition-duration: 0.4s;
+}
+
+.cell:hover {
+  background-color: var(--cell-border-color);
+  color: var(--text-color);
+  font-size: 30px;
+  padding-bottom: 0;
+  cursor: pointer;
+}

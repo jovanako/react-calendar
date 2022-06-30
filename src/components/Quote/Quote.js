@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import './Quote.css'
 
-const QUOTES_API = "https://asli-fun-fact-api.herokuapp.com/"
+const QUOTES_API = "https://uselessfacts.jsph.pl/random.json?language=en"
 
 
 function Quote() {
@@ -13,10 +14,12 @@ function Quote() {
     console.log(error)
   }
 
-  fetch(QUOTES_API)
-    .then(response => response.json())
-    .then(json => setQuoteText(json.data.fact.toUpperCase()))
-    .catch(handleError)
+  useEffect(() => {
+    fetch(QUOTES_API)
+      .then(response => response.json())
+      .then(json => setQuoteText(json.text.toUpperCase()))
+      .catch(handleError)
+  }, [])
 
   return (
     <div id='quote-wrapper'>
