@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom"
-import Title from "../Title/Title"
+import { useParams } from 'react-router-dom'
+import Title from '../Title/Title'
 import './Calendar.css'
-import Days from "../Days/Days"
+import Days from '../Days/Days'
 
 
 export default function Calendar() {

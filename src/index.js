@@ -8,7 +8,7 @@ import Calendar from './components/Calendar/Calendar'
 
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root'));
+  document.getElementById('root'))
 root.render(
   <BrowserRouter>
     <Routes>
@@ -18,7 +18,7 @@ root.render(
       </Route>
     </Routes>
   </BrowserRouter>
-);
+)
 
 
 // If you want to start measuring performance in your app, pass a function
