@@ -14,21 +14,12 @@ function Quote() {
     console.log(error)
   }
 
-  // const getQuote = async () => {
-  //   try {
-  //     const response = await fetch(QUOTES_API)
-  //     return await response.json()
-  //   } catch {
-  //     handleError()
-  //   }
-  // }
-
   useEffect(() => {
-    (async function getQuote() {
+    (async function () {
       try {
         const response = await fetch(QUOTES_API)
-        setQuoteText(await response.json()
-          .then(json => json.text))
+        const json = await response.json()
+        setQuoteText(json.text)
       } catch {
         handleError()
       }
