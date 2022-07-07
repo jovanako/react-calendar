@@ -9,18 +9,20 @@ let container = null
 beforeEach(() => {
   container = document.createElement("div")
   document.body.appendChild(container)
+  jest.useFakeTimers()
 })
 
 afterEach(() => {
   unmountComponentAtNode(container)
   container.remove()
   container = null
+  jest.useRealTimers()
 })
 
-it("marks the current date", () => {
+it('marks the current date', () => {
+  jest.setSystemTime(new Date(2020, 6, 10))
   act(() => {
-    const currentDate = new Date()
-    render(<Day day={currentDate.getDate()} month={currentDate.getMonth()} year={currentDate.getFullYear()} />, container)
+    render(<Day day={10} month={6} year={2020} />, container)
   })
   expect(container.querySelector('div').id).toBe('current-day')
 })
