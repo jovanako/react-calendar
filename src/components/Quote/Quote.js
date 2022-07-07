@@ -14,12 +14,33 @@ function Quote() {
     console.log(error)
   }
 
+  // const getQuote = async () => {
+  //   try {
+  //     const response = await fetch(QUOTES_API)
+  //     return await response.json()
+  //   } catch {
+  //     handleError()
+  //   }
+  // }
+
   useEffect(() => {
-    fetch(QUOTES_API)
-      .then(response => response.json())
-      .then(json => setQuoteText(json.text.toUpperCase()))
-      .catch(handleError)
+    (async function getQuote() {
+      try {
+        const response = await fetch(QUOTES_API)
+        setQuoteText(await response.json()
+          .then(json => json.text))
+      } catch {
+        handleError()
+      }
+    })()
   }, [])
+
+  // useEffect(() => {
+  //   fetch(QUOTES_API)
+  //     .then(response => response.json())
+  //     .then(json => setQuoteText(json.text))
+  //     .catch(handleError)
+  // }, [])
 
   return (
     <div id='quote-wrapper'>
