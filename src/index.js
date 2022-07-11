@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import Calendar from './components/Calendar/Calendar'
+import DayView from './components/DayView/DayView'
 
 
 const root = ReactDOM.createRoot(
@@ -15,6 +16,7 @@ root.render(
       <Route path='/' element={<App />}>
         <Route path=':year/:month' element={<Calendar />} />
         <Route path='/' element={<Calendar />} />
+        <Route path=':year/:month/:day' element={<DayView />} />
       </Route>
     </Routes>
   </BrowserRouter>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Days.css'
 import Day from '../Day/Day'
 
@@ -27,7 +28,9 @@ export default function Days(props) {
       </div>
       <div id='dates-wrapper'>
         {[...Array(daysInMonth)].map((_, i) =>
-          <Day key={i} day={i + 1} month={month} year={year} />
+          <Link to={`/${year}/${month}/${i + 1}`}>
+            <Day key={i} day={i + 1} month={month} year={year} />
+          </Link>
         )}
       </div>
     </>
