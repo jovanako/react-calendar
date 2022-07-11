@@ -7,3 +7,9 @@
   color: var(--text-color);
   border-radius: 5px;
 }
+
+@media (orientation: portrait) {
+  #quote-wrapper {
+    font-size: 20px;
+  }
+}
