@@ -54,7 +54,6 @@ h1 {
   font-size: 20px;
   vertical-align: top;
   text-align: left;
-  text-decoration: none;
   padding: 20px;
   margin: 1px;
   transition-duration: 0.4s;
@@ -66,6 +65,22 @@ h1 {
   font-size: 30px;
   padding-bottom: 0;
   cursor: pointer;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
 }
 
 @media (orientation: portrait) {

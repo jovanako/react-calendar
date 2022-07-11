@@ -20,11 +20,20 @@
 #dates-wrapper {
   min-height: 500px;
   position: relative;
+  align-content: stretch;
+}
+
+#dates-wrapper div {
+  height: 50%;
 }
 
 @media (orientation: portrait) {
   #dates-wrapper {
     min-height: 300px;
+  }
+
+  #dates-wrapper div {
+    height: 90%;
   }
 
   #week-days div {
