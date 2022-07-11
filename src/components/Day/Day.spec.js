@@ -26,3 +26,12 @@ it('marks the current date', () => {
   })
   expect(container.querySelector('div').id).toBe('current-day')
 })
+
+it('marks the class name', () => {
+  jest.setSystemTime(new Date(2020, 6, 10))
+  act(() => {
+    render(<Day day={11} month={6} year={2020} />, container)
+  })
+  expect(container.querySelector('div').className).toBe('cell')
+  expect(container.querySelector('div').id).toBe('')
+})

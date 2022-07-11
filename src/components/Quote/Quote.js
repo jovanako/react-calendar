@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Quote.css'
 
-const QUOTES_API = "https://uselessfacts.jsph.pl/random.json?language=en"
+const QUOTES_API = 'https://uselessfacts.jsph.pl/random.json?language=en'
 
 
 function Quote() {
@@ -38,7 +38,7 @@ function Quote() {
       {!error &&
         <>
           <p>Did you know?</p>
-          <p>{quoteText}</p>
+          <p id='quote-text'>{quoteText}</p>
         </>}
     </div>
   )
