@@ -27,11 +27,28 @@ it('marks the current date', () => {
   expect(container.querySelector('div').id).toBe('current-day')
 })
 
-it('marks the class name', () => {
+it('does not mark non-current date', () => {
   jest.setSystemTime(new Date(2020, 6, 10))
   act(() => {
     render(<Day day={11} month={6} year={2020} />, container)
   })
-  expect(container.querySelector('div').className).toBe('cell')
-  expect(container.querySelector('div').id).toBe('')
+  expect(container.querySelector('div').id).not.toBe('current-day')
+})
+
+it('positions the first day in month', () => {
+  const testDay = new Date(2022, 6, 1)
+  jest.setSystemTime(testDay)
+  act(() => {
+    render(<Day day={1} month={6} year={2022} />, container)
+  })
+  expect(container.querySelector('div')).toHaveStyle({ gridColumnStart: 5 })
+})
+
+it('does not set gridColumnStart for the rest of the days', () => {
+  const testDay = new Date(2022, 6, 1)
+  jest.setSystemTime(testDay)
+  act(() => {
+    render(<Day day={2} month={6} year={2022} />, container)
+  })
+  expect(container.querySelector('div')).not.toHaveStyle({ gridColumnStart: 5 })
 })
