@@ -15,11 +15,12 @@ export default function DayView() {
   return (
     <div id='day-view'>
       <h1 id='day-view-title'>Add Reminder</h1>
-      <div id='reminder-container'>
+      <form id='reminder-container'>
         <input id='reminder-title' class="reminder-element" type='text' placeholder='Add title'></input>
         <label id='reminder-label' htmlFor='reminder-time'>Date and Time</label>
         <input type='datetime-local' id='reminder-time' class="reminder-element" value={`${year}-${month}-${day}T${currentHour}:${currentMinutes}`}></input>
-      </div>
+        <input id='add-button' class="reminder-element" type="submit" value="Add" />
+      </form>
     </div>
   )
 
