@@ -1,4 +1,5 @@
 import './Day.css'
+import { Link } from 'react-router-dom'
 
 function isCurrentDay(day, month, year) {
   const currentDate = new Date()
@@ -24,6 +25,6 @@ export default function Day(props) {
   const style = day === 1 ? { gridColumnStart: firstWeekDayInMonth } : {}
 
   return (
-    <div id={id} className='cell' style={style}>{day}</div>
+    <Link id={id} className='cell' style={style} to={`/${year}/${month}/${day}`}>{day}</Link>
   )
 }
