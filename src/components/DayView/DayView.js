@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+import './DayView.css'
 
 export default function DayView() {
 
@@ -12,11 +13,11 @@ export default function DayView() {
   const currentMinutes = String(date.getMinutes()).padStart(2, '0')
 
   return (
-    <>
-      <input type='text' placeholder='Add title'></input>
-      <label htmlFor='reminder-time'>Date and Time</label>
-      <input type='datetime-local' id='reminder-time' value={`${year}-${month}-${day}T${currentHour}:${currentMinutes}`}></input>
-    </>
+    <div id='reminder-container'>
+      <input id='reminder-title' class="reminder-element" type='text' placeholder='Add title'></input>
+      <label id='reminder-label' htmlFor='reminder-time'>Date and Time</label>
+      <input type='datetime-local' id='reminder-time' class="reminder-element" value={`${year}-${month}-${day}T${currentHour}:${currentMinutes}`}></input>
+    </div>
   )
 
 }

@@ -1,0 +1,23 @@
+#reminder-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: center;
+  margin: 50px auto 0 auto;
+  flex-grow: 1;
+  /* font-family: 'Roboto', sans-serif; */
+}
+
+.reminder-element {
+  height: 50px;
+  font-size: 18px;
+  padding: 7px;
+  font-family: 'Roboto', sans-serif;
+}
+
+#reminder-label {
+  margin-top: 30px;
+  height: 30px;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+}
