@@ -9,7 +9,7 @@
 #reminder-container {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 60%;
   justify-content: center;
   margin: 50px auto 50px auto;
   flex-grow: 1;
@@ -43,6 +43,7 @@ input:focus {
 #add-button {
   width: 20%;
   margin: 30px auto 0 auto;
+  background-color: #FFFFFF;
 }
 
 #add-button:hover {
