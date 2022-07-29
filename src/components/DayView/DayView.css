@@ -26,6 +26,12 @@
   transition-duration: 0.4s;
 }
 
+h2 {
+  color: var(--text-color);
+  text-align: center;
+  font-family: var(--main-font);
+}
+
 #reminder-label {
   margin-top: 30px;
   height: 30px;

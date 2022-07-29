@@ -53,6 +53,7 @@ export default function DayView() {
   return (
     <div id='day-view'>
       <h1 id='day-view-title'>Add Reminder</h1>
+      <h2>for {`${day}.${month}.${year}`}</h2>
       <form id='reminder-container'>
         <input
           id='reminder-title'
