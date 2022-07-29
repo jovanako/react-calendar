@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './DayView.css'
 
 export default function DayView() {
@@ -12,38 +12,75 @@ export default function DayView() {
   const date = new Date()
   const currentHour = String(date.getHours()).padStart(2, '0')
   const currentMinutes = String(date.getMinutes()).padStart(2, '0')
+  const key = `reminder${year}-${month}-${day}`
 
-  const [reminderDateTime, setReminderDateTime] = useState(`${year}-${month}-${day}T${currentHour}:${currentMinutes}`)
+  const [reminderTime, setReminderTime] = useState(`${currentHour}:${currentMinutes}`)
   const [reminderTitle, setReminderTitle] = useState('')
   const [reminders, setReminders] = useState([])
+  const [error, setError] = useState(false)
 
-  function handleDateTimeChange(event) {
-    setReminderDateTime(event.target.value);
+  function handleTimeChange(event) {
+    setReminderTime(event.target.value);
   }
 
   function handleAddClick(event) {
     event.preventDefault()
-    const reminder = {
-      title: reminderTitle,
-      dateTime: new Date(reminderDateTime)
+    if (reminderTitle) {
+      setError(false)
+      const reminder = {
+        title: reminderTitle,
+        dateTime: new Date(`${year}-${month}-${day}T${reminderTime}`)
+      }
+      setReminders([reminder, ...reminders]
+        .sort((r1, r2) => r1.dateTime.getTime() - r2.dateTime.getTime()))
+      setReminderTitle('')
+    } else {
+      setError(true)
     }
-    setReminders([reminder, ...reminders]
-      .sort((r1, r2) => r1.dateTime.getTime() - r2.dateTime.getTime()))
-    setReminderTitle('')
   }
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(reminders))
+  }, [reminders])
+
+  useEffect(() => {
+    const reminders = JSON.parse(localStorage.getItem(key))
+    if (reminders) {
+      setReminders(reminders)
+    }
+  }, [])
 
   return (
     <div id='day-view'>
       <h1 id='day-view-title'>Add Reminder</h1>
       <form id='reminder-container'>
-        <input id='reminder-title' className='reminder-element' type='text' placeholder='Add title' onChange={(e) => setReminderTitle(e.target.value)} value={reminderTitle}></input>
-        <label id='reminder-label' htmlFor='reminder-time'>Date and Time</label>
-        <input type='datetime-local' id='reminder-time' className='reminder-element' value={reminderDateTime} onChange={handleDateTimeChange}></input>
-        <input id='add-button' className='reminder-element' type='submit' value='Add' onClick={handleAddClick} />
-        <div id='reminder-container'>
+        <input
+          id='reminder-title'
+          className={`reminder-element ${error ? 'error' : ''}`}
+          type='text'
+          placeholder='Add title'
+          onChange={(e) => setReminderTitle(e.target.value)}
+          value={reminderTitle}></input>
+        <label id='reminder-label' htmlFor='reminder-time'>Time</label>
+        <input
+          type='time'
+          id='reminder-time'
+          className='reminder-element'
+          value={reminderTime}
+          onChange={handleTimeChange}></input>
+        <input
+          id='add-button'
+          className='reminder-element'
+          type='submit'
+          value='Add'
+          onClick={handleAddClick} />
+        <div>
           {reminders.map((reminder, index) => {
             return (
-              <div key={index}>{reminder.title} {reminder.dateTime.toLocaleString('de-DE')}</div>
+              <div className='reminder' key={index}>
+                <span className='reminder-time'>{reminder.dateTime.toLocaleString('de-DE')}</span>
+                <span className='reminder-text'> {reminder.title}</span>
+              </div>
             )
           })}
         </div>
