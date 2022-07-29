@@ -5,7 +5,7 @@ import './DayView.css'
 export default function DayView() {
 
   const params = useParams()
-  const day = params.day
+  const day = String(parseInt(params.day)).padStart(2, '0')
   const month = String(parseInt(params.month) + 1).padStart(2, '0')
   const year = params.year
 
@@ -13,21 +13,41 @@ export default function DayView() {
   const currentHour = String(date.getHours()).padStart(2, '0')
   const currentMinutes = String(date.getMinutes()).padStart(2, '0')
 
-  const [inputValue, setInputValue] = useState(`${year}-${month}-${day}T${currentHour}:${currentMinutes}`)
+  const [reminderDateTime, setReminderDateTime] = useState(`${year}-${month}-${day}T${currentHour}:${currentMinutes}`)
+  const [reminderTitle, setReminderTitle] = useState('')
+  const [reminders, setReminders] = useState([])
 
-  function handleInputChange(event) {
-    setInputValue(event.target.value);
+  function handleDateTimeChange(event) {
+    setReminderDateTime(event.target.value);
+  }
+
+  function handleAddClick(event) {
+    event.preventDefault()
+    const reminder = {
+      title: reminderTitle,
+      dateTime: new Date(reminderDateTime)
+    }
+    setReminders([reminder, ...reminders]
+      .sort((r1, r2) => r1.dateTime.getTime() - r2.dateTime.getTime()))
+    setReminderTitle('')
   }
 
   return (
     <div id='day-view'>
       <h1 id='day-view-title'>Add Reminder</h1>
       <form id='reminder-container'>
-        <input id='reminder-title' class="reminder-element" type='text' placeholder='Add title'></input>
+        <input id='reminder-title' className='reminder-element' type='text' placeholder='Add title' onChange={(e) => setReminderTitle(e.target.value)} value={reminderTitle}></input>
         <label id='reminder-label' htmlFor='reminder-time'>Date and Time</label>
-        <input type='datetime-local' id='reminder-time' class="reminder-element" value={inputValue} onChange={handleInputChange}></input>
-        <input id='add-button' class="reminder-element" type="submit" value="Add" />
-      </form>
+        <input type='datetime-local' id='reminder-time' className='reminder-element' value={reminderDateTime} onChange={handleDateTimeChange}></input>
+        <input id='add-button' className='reminder-element' type='submit' value='Add' onClick={handleAddClick} />
+        <div id='reminder-container'>
+          {reminders.map((reminder, index) => {
+            return (
+              <div key={index}>{reminder.title} {reminder.dateTime.toLocaleString('de-DE')}</div>
+            )
+          })}
+        </div>
+      </form >
     </div >
   )
 
