@@ -24,7 +24,14 @@ export default function Day(props) {
 
   const style = day === 1 ? { gridColumnStart: firstWeekDayInMonth } : {}
 
+  const keyDay = String(day).padStart(2, '0')
+  const keyMonth = String(month + 1).padStart(2, '0')
+  const key = `reminder${year}-${keyMonth}-${keyDay}`
+  const reminders = JSON.parse(localStorage.getItem(key))
+  const hasReminders = reminders && reminders.length
+  const classNames = `cell ${hasReminders ? 'hasReminder' : ''}`
+
   return (
-    <Link id={id} className='cell' style={style} to={`/${year}/${month}/${day}`}>{day}</Link>
+    <Link id={id} className={classNames} style={style} to={`/${year}/${month}/${day}`}>{day}</Link>
   )
 }

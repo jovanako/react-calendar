@@ -2,3 +2,10 @@
   background-color: var(--cell-border-color);
   color: var(--text-color);
 }
+
+.hasReminder {
+  background-image: url("sticky.png");
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
