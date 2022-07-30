@@ -2,6 +2,13 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import './DayView.css'
 
+const DATE_FORMAT_OPTS = {
+  dateStyle: 'short',
+  timeStyle: 'short'
+}
+
+const dateTimeReviver = (key, value) => key === 'dateTime' ? new Date(value) : value
+
 export default function DayView() {
 
   const params = useParams()
@@ -40,15 +47,15 @@ export default function DayView() {
   }
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(reminders))
-  }, [reminders])
-
-  useEffect(() => {
-    const reminders = JSON.parse(localStorage.getItem(key))
+    const reminders = JSON.parse(localStorage.getItem(key), dateTimeReviver)
     if (reminders) {
       setReminders(reminders)
     }
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(reminders))
+  }, [reminders])
 
   return (
     <div id='day-view'>
@@ -79,7 +86,7 @@ export default function DayView() {
           {reminders.map((reminder, index) => {
             return (
               <div className='reminder' key={index}>
-                <span className='reminder-time'>{reminder.dateTime.toLocaleString('de-DE')}</span>
+                <span className='reminder-time'>{reminder.dateTime.toLocaleString('de-DE', DATE_FORMAT_OPTS)}</span>
                 <span className='reminder-text'> {reminder.title}</span>
               </div>
             )
