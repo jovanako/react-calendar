@@ -35,6 +35,7 @@ export default function DayView() {
     if (reminderTitle) {
       setError(false)
       const reminder = {
+        id: new Date().getTime(),
         title: reminderTitle,
         dateTime: new Date(`${year}-${month}-${day}T${reminderTime}`)
       }
@@ -56,6 +57,10 @@ export default function DayView() {
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(reminders))
   }, [reminders])
+
+  const removeReminder = (id) => {
+    setReminders(reminders.filter((reminder) => reminder.id !== id))
+  }
 
   return (
     <div id='day-view'>
@@ -83,14 +88,13 @@ export default function DayView() {
           value='Add'
           onClick={handleAddClick} />
         <div>
-          {reminders.map((reminder, index) => {
-            return (
-              <div className='reminder' key={index}>
-                <span className='reminder-time'>{reminder.dateTime.toLocaleString('de-DE', DATE_FORMAT_OPTS)}</span>
-                <span className='reminder-text'> {reminder.title}</span>
-              </div>
-            )
-          })}
+          {reminders.map((reminder, index) => (
+            <div className='reminder' key={index}>
+              <span className='reminder-time'>{reminder.dateTime.toLocaleString('de-DE', DATE_FORMAT_OPTS)}</span>
+              <span className='reminder-text'> {reminder.title}</span>
+              <span className='remove' onClick={() => removeReminder(reminder.id)}>&times;</span>
+            </div>
+          ))}
         </div>
       </form >
     </div >
