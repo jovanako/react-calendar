@@ -26,4 +26,3 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm test -- --watchAll=false
-
