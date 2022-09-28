@@ -28,9 +28,9 @@ export default function Title(props) {
 
   return (
     <div id='title-wrapper'>
-      <Link className='button' to={`/${previousYear}/${previousMonth}`}>&lt;</Link>
+      <Link className='button' to={`/react-calendar/${previousYear}/${previousMonth}`}>&lt;</Link>
       <h1>{MONTH_NAMES[month]} {year}</h1>
-      <Link className='button' to={`/${nextYear}/${nextMonth}`}>&gt;</Link>
+      <Link className='button' to={`/react-calendar/${nextYear}/${nextMonth}`}>&gt;</Link>
     </div>
   )
 }

@@ -13,11 +13,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path='/' element={<App />}>
+      <Route path='/react-calendar/' element={<App />}>
         <Route path=':year/:month' element={<Calendar />} />
-        <Route path='/' element={<Calendar />} />
+        <Route path='/react-calendar/' element={<Calendar />} />
       </Route>
-      <Route path=':year/:month/:day' element={<DayView />} />
+      <Route path='/react-calendar/:year/:month/:day' element={<DayView />} />
     </Routes>
   </BrowserRouter>
 )
